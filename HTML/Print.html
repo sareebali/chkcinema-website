@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print</title>
+    <link rel="stylesheet" href="../CSS/Theme.css" type="text/css" media="all" /> 
+    <link rel="stylesheet" href="../CSS/Header.css" type="text/css" media="screen" /> 
+    <link rel="stylesheet" href="../CSS/Menu.css" type="text/css" media="screen" /> 
+    <link rel="stylesheet" href="../CSS/Footer.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../CSS/Heading.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../CSS/PrintPreview.css" type="text/css" media="Print" />
+
+    <style media="screen">
+        #ticket > div{
+            border: 1pt  rgb(52, 163, 207);
+            border-style: solid;
+            border-radius: 5px;
+            padding-left: 10pt;
+            width: 200pt;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <div></div>
+        <img src="../Pictures/CHKLogo.png" title="Cinema HK Logo" alt="Cinema HK Logo">
+        <h1>Cinema HK</h1>
+    </header>
+
+    <nav>
+        <a class= "topmenu" href="Home.html">Home</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Now-Showing.html">Now Showing</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Ticket.html">Ticket</a>
+    </nav>
+
+    <div>
+        <div id="ticket"></div>
+    </div>
+
+
+    <footer>
+
+        <p>@Copyright of resources belongs to corresponding copyright owners</p>
+        <p>-Fair use for Educational Purposes</p>
+        <nav>
+            <a href="Home.html">Home</a> <mark>|</mark> <a href="Design.html">Design</a>
+        </nav>
+    </footer>
+
+</body>
+
+<script>
+
+    window.onload= prodTic;
+
+    //Function for cleaning Query String
+    function replacer(words) {
+        for (j=0; j<words.length; j++) {
+          if (words.charAt(j) == '+'){
+              words = words.replace(words.charAt(j), ' ');
+          };
+        };
+        words = words.replace(/%2C/gi,", ");
+        words = words.replace("%3A", ":");
+        return words;
+    }
+
+    //Function for returning a specific item (for e.g the Cinema's name)
+    function getVar(variable) {
+      var query = window.location.search.substring(1);
+      query = replacer(query);
+      var vars = query.split("&");
+      for (i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+          return pair[1];
+        }
+      }
+      return null;
+    }
+
+    //function for producing the tickets
+    function prodTic(){
+        var cname = getVar('cinemaname');
+        var mname = getVar('moviename');
+        var dattim = getVar('datetime');
+        var house = getVar('house');
+        var seats = getVar('selectedseats');
+
+        seats = seats.split(', ');
+
+        for (k=0; k<seats.length; k++){
+          var cont = document.createElement("div");
+          cont.innerHTML = '<h2>Ticket '+ (k+1) +'</h2>'
+          +'<p>Cinema: '+ cname +'</p>'
+          +'<p>Movie Name: '+ mname +'</p>'
+          +'<p>Date & Time: '+ dattim +'</p>'
+          +'<p>House: '+ house +'</p>'
+          +'<p>Seat: '+ seats[k] +'</p>'
+          document.querySelector('#ticket').append(cont);
+        }
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,16 @@
+header + nav{
+    background-image: linear-gradient(#007cd3, #93cef7);
+    height: 20pt;
+    width: 400pt;
+    margin-top: 15pt;
+    position: sticky;
+    top: 0;
+    margin-bottom: 5pt;
+    z-index: 3;
+}
+.topmenu{
+    background-image: linear-gradient(#007cd3, #53b8ff);
+    text-decoration: none;
+    padding-left: 40pt;
+    
+}

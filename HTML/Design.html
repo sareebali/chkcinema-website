@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design</title>
+    <link rel="stylesheet" href="../CSS/Theme.css" type="text/css" media="all" />
+   <style>
+       h4{
+           margin-bottom: 3pt;
+       }
+       section{
+           border: 1pt  rgb(52, 163, 207);
+           border-style: solid;
+           border-radius: 5px;
+           padding: 10pt;
+       }
+       nav{
+        text-align: center;
+       }
+       a{
+           background-color: #247fa3;
+        }
+   </style>
+</head>
+<body>
+        
+    <header>
+        <img src="../Pictures/CHKLogo.png" title="Cinema HK Logo" alt="Cinema HK Logo">
+    </header>
+<section>
+    <div>
+        <h4>Event Handlers setup in HTML:</h4>
+        <ul>
+            <li>Home Page - line 130</li>
+            <li>Ticket Page - line 106</li>
+            <li>Ticket Page - lines 135-138, lines 142-145, lines 149-152, lines 156-159 and lines 163-166</li>
+        </ul>
+        <h4>Event Handlers setup in JavaScript:</h4>
+        <ul>
+            <li>Now Showing Page - line 227</li>
+            <li>Print Page - line 55</li>
+        </ul>
+    </div>
+    <div>
+    <h1>General Layout</h1>
+    <img src="../Pictures/Layout.png" alt="Your Browser does not support this image format" title="Layout">
+    </div>
+
+    <div>
+        <h4>Number of Style Sheets used in total: 6</h4>
+        <h4>Number of Groups of Styles used in total: 34</h4>
+        <h4>Style Sheets used:</h4>
+        <ul>
+            <li>Theme: used for background color, text font and text color of all pages</li>
+            <li>Header: used to animate the logo on all pages</li>
+            <li>Heading: used to style and align the cinema name and to define the general layout of the header on all pages</li>
+            <li>Footer: used to style and align the footer and the text in it for all pages</li>
+            <li>Menu: used to style and align the navigation menu and the text in it for all pages</li>
+            <li>PrintPreview: used to design the layout of the print preview of the Print page</li>
+        </ul>
+        <h4>Groups of Styles used:</h4>
+        <ol>
+            <li>
+                Home:
+                <ul>
+                    <li>Making the Home button on the Navigation Menu unclickable</li>
+                    <li>Aligning the thumbnails in the Now Showing and Up Coming section with the text and making the cursor change to a pointer when it hovers on the thumbnails</li>
+                    <li>Making 'Movie Name', 'Director', 'Cast' and 'Duration' bold</li>
+                    <li>Resizing the video and adding a border to it</li>
+                    <li>Styling the headings 'Now Showing' and 'Up Coming'</li>
+                    <li>Aligning the Now Showing and Up Coming sections and adding borders to them</li>
+                    <li>Aligning the text inside the Now Coming and Up Coming sections</li>
+                    <li>Aligning and Styling the Movie Name and the text itself</li>
+                </ul>
+                <li>
+                    Now-Showing:
+                    <ul>
+                        <li>Making the Now Showing button on the Navigation Menu unclickable</li>
+                        <li>Aligning the thumbnails with the text</li>
+                        <li>Aligning the dropdown menus</li>
+                        <li>Adding borders to forms and cinema sections</li>
+                        <li>Adding border around the location details</li>
+                        <li>Aligning the location images relative to the addresses</li>
+                        <li>Styling the headings of the forms</li>
+                        <li>Aligning text boxes</li>
+                    </ul>
+                </li>
+                <li>
+                    Ticket:
+                    <ul>
+                        <li>Making the Ticket button on the Navigation Menu unclickable</li>
+                        <li>Changing teh cursor to pointer and making the cells of the seating arrangement table change color as the cursor hovers over them</li>
+                        <li>Aligning the cells of the table of the seating arrangement and adding a border to them</li>
+                        <li>Styling and aligning the table</li>
+                        <li>Styling the text 'Screen' above the table</li>
+                        <li>Styling the heading 'Seating Arrangement'</li>
+                        <li>Adding a border around the form</li>
+                        <li>Aligning the input fields</li>
+                        <li>Styling the border around the form</li>
+                        <li>Aligning the input areas</li>
+                        <li>Increasing the width of the input box for Cinema</li>
+                        <li>Increasing the width of the input box for Selected Seats</li>
+                    </ul>
+                </li>
+                <li>
+                    Print:
+                    <ul>
+                        <li>Adding borders around each of the tickets</li>
+                    </ul>
+                </li>
+                <li>
+                    Design:
+                    <ul>
+                        <li>Aligning all headings</li>
+                        <li>Adding border around the main content and aligning the content inside it</li>
+                        <li>Center-aligning the link to Home Page</li>
+                        <li>Changing the background color of the link to the Home Page</li>
+                    </ul>
+                </li>
+            
+        </ol>
+        <h4>CSS3 Features used:</h4>
+        <ul>
+            <li>Round-edged Border: line 11 of Style Sheet named 'Footer.css' used on all pages except this one(line 10)</li>
+            <li>Color Gradient: line 12 of the Style Sheet named 'Menu.css' used on all pages except this one(line 9)</li>
+            <li>Round-edged Border: line 9 of the Style Sheet named 'PrintPreview.css' used on Print page(line 12)</li>
+            <li>Round-edged Border: line 31 and line 44 of Home Page, line 30 on Now Showing page, line 46 on Ticket page and line 18 of Print page</li>    
+        </ul>
+    </div>
+
+    <div>
+    <h4>Why my HTML code matches the requirements:</h4>
+    <ul>
+        <li>The code is divided into separate blocks marked by structural tags</li>
+        <li>Header: Appears at the top of every page (except Design Page) and includes a logo(designed by me) and name of the Cinema</li>
+        <li>Navigator: Follows Header at the top of every page(except Design Page) and includes links to Home, Now Showing and Ticket pages</li>
+        <li>Footer: Appears at the bottom of every page(except Design Page) and includes copyright information with links to Home and Design pages</li>
+        <li>Home Page: A video supporting mp4 and ogg formats is shown and Now Showing and Up Coming sections are visible</li>
+        <li>Now Showing Page: A selection menu to select a Cinema and a separate form for each cinema with their respective location details are included</li>
+        <li>Ticket Page: The details of the selected movie are shown together with the seating arrangement with screen, rows and seats marked</li>
+        <li>Print Page: The details of the selected tickets are shown</li>
+    </ul>
+    </div>
+    <div>
+        <h4>Acknowledgements:</h4>
+        <ul>
+        <li>Icons made by "https://www.flaticon.com/authors/freepik"</li>
+        <li>Maps by "https://www.google.com/maps"</li>
+        </ul>
+    </div>
+</section>
+    <nav>
+        <a href="Home.html">Home</a>
+    </nav>
+    
+</body>
+</html>

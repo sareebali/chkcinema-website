@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Showing</title>
+    <link rel="stylesheet" href="../CSS/Theme.css" type="text/css" media="all" /> 
+    <link rel="stylesheet" href="../CSS/Header.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../CSS/Menu.css" type="text/css" media="all" /> 
+    <link rel="stylesheet" href="../CSS/Footer.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../CSS/Heading.css" type="text/css" media="all" />
+    <script src="../JavaScript/movies.js"></script>
+    <script src="http://courses.cs.cityu.edu.hk/cs2204/cw3/cinemas.js"></script>
+    <style media="all">
+        a[href="Now-Showing.html"]{
+            pointer-events: none;
+        }
+        form img{
+            float: left;
+            margin-right: 5pt;
+            margin-top: 1pt;
+            margin-bottom: 1pt;
+        }
+        select{
+            margin-right: 8pt;
+        }
+        fieldset, section{
+            border: 1pt  rgb(52, 163, 207);
+            border-style: solid;
+            border-radius: 5px;
+        }
+        .location{
+            float: right;
+            margin-right: 380pt;
+        }
+        .location + img{
+            margin: 10pt;
+            border: 2pt rgb(52, 163, 207);
+            border-style: solid;
+        }
+        legend{
+            font-weight: bolder;
+            font-size: 30pt;
+        }
+        input[type="text"]{
+            margin-top: 1%;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <div></div>
+        <img src="../Pictures/CHKLogo.png" title="Cinema HK Logo" alt="Cinema HK Logo">
+        <h1>Cinema HK</h1>
+    </header>
+
+    <nav>
+        <a class= "topmenu" href="Home.html">Home</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Now-Showing.html">Now Showing</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Ticket.html">Ticket</a>
+    </nav>
+
+    <form action="Ticket.html" method="GET">
+        <fieldset>
+            <label for="selection">Select a Cinema:</label>
+            <select id="selection" name="cinemaselect"></select>
+        </fieldset>
+    </form>
+
+    <section>
+    
+        <fieldset>
+            <div id="area"></div>
+        </fieldset>
+
+    <div>
+        <div class="location">
+        <h3>Cinema HK - Festival Walk Location:</h3>
+        <p>Address: Cinema HK, 2 Jung To Road, Festival Walk, Kowloon</p>
+        </div>
+        <img src="../Pictures/Kowlooon-Tong-Cinema-Map.png" title="CHK-Kowloon Tong" alt="CHK-Kowloon Tong Map">
+        
+    </div>
+    </section>
+    <section>
+    <div>
+        <div class="location">
+        <h3>Cinema HK - Mong Kok Location:</h3>
+        <p>Address: Cinema HK, 11 Hennessy, Mong Kok, Hong Kong</p>
+        </div>
+        <img src="../Pictures/Wan-Chai-Cinema-Location.png" title="CHK-Wan Chai" alt="CHK-Wan Chai Map">
+        
+    </div>
+    </section>
+
+    <section>
+    <div>
+        <div class="location">
+        <h3>Cinema HK - Central Location:</h3>
+        <p>Address: Cinema HK, 7 Chun Chow Road, Central, Kowloon</p>
+        </div>
+        <img src="../Pictures/Tsuen-Wan-Cinema-Location.png" title="CHK-Tsuen Wan" alt="CHK-Tsuen Wan Map">
+        
+    </div>
+    </section>
+    <footer>
+        
+        <p>@Copyright of resources belongs to corresponding copyright owners</p>
+        <p>-Fair use for Educational Purposes</p>
+        <nav>
+            <a href="Home.html">Home</a> <mark>|</mark> <a href="Design.html">Design</a>
+        </nav>
+    </footer>
+
+    
+    
+</body>
+
+<script>
+    //Drop-down menu for selecting Cinema's Branch
+    var cinemas = getCinemas();
+    for(i=0; i<cinemas.length; i++){
+        var bn = cinemas[i].branchName;
+        var slct = document.createElement("option");
+        slct.value= bn
+        slct.innerHTML= ' '+ bn +''
+        document.querySelector("#selection").appendChild(slct);
+    }
+
+    //The data of Cinemas and Movies
+    var movies = getMovies();
+    var mcount = 0;
+    //Iterates over all cinemas in cinemas.js
+    for (j=0; j<cinemas.length; j++){
+        var cont_4_each_cin = document.createElement("div");
+        cont_4_each_cin.class = 'cincont'
+        cont_4_each_cin.id = 'container'+j;
+        document.querySelector('#area').appendChild(cont_4_each_cin);
+
+        //Hiding all Cinemas except the first one, initially
+        if(j != 0){
+            cont_4_each_cin.style.display = "none";
+        }
+
+        //Iterates over all movies in cinemas.js
+        for (k=0; k<cinemas[j].movies.length; k++){
+            //Iterates over all movies in movies.js
+            for(z=0; z<movies.length; z++){
+                if(movies[z].id == cinemas[j].movies[k].id){
+                    var mname = movies[z].name;
+                    var img = movies[z].thumbnail;
+                    var eachmovie = document.createElement("form");
+                    eachmovie.id = 'fm'+ mcount;
+                    eachmovie.action= "Ticket.html";
+                    eachmovie.method= "GET";
+                    eachmovie.innerHTML= '<img src="'+ img +'" title="'+ mname +'" alt="'+ mname +'">'
+                    +'<label for="moviename">Movie Name:</label>'
+                    +'<input type="text" name="moviename" value="'+ mname +'" readonly><br>'
+                    document.getElementById('container'+j).appendChild(eachmovie);
+
+                    //Drop-down menu for Date & Time selection
+                    var dtlabel = document.createElement("label");
+                    dtlabel.for = "datetime";
+                    dtlabel.innerHTML = 'Select Date & Time: '
+                    document.getElementById('fm'+ mcount).append(dtlabel);
+                    
+                    var dtselect = document.createElement("select");
+                    dtselect.id = 'dt'+ mcount;
+                    dtselect.name = 'datetime';
+                    document.getElementById('fm'+ mcount).appendChild(dtselect);
+                    //Iterates over shows in cinemas.js to select datetime
+                    for(x=0; x<cinemas[j].movies[k].shows.length; x++){
+                        var dt = cinemas[j].movies[k].shows[x].datetime;
+                        var dtopt = document.createElement("option");
+                        dtopt.value = dt;
+                        dtopt.innerHTML = dt;
+                        document.getElementById('dt'+ mcount).appendChild(dtopt);
+                    }
+
+                    //Drop-down menu for House selection
+                    var hlabel = document.createElement("label");
+                    hlabel.for = "house";
+                    hlabel.innerHTML = 'Select House: '
+                    document.getElementById('fm'+ mcount).append(hlabel);
+
+                    var hselect = document.createElement("select");
+                    hselect.id = 'h'+ mcount;
+                    hselect.name = 'house';
+                    document.getElementById('fm'+ mcount).appendChild(hselect);
+                    //Iterates over shows in cinemas.js to select datetime
+                    for(y=0; y<cinemas[j].movies[k].shows.length; y++){
+                        var h = cinemas[j].movies[k].shows[y].house;
+                        var hopt = document.createElement("option");
+                        hopt.value = h;
+                        hopt.innerHTML = h;
+                        document.getElementById('h'+ mcount).appendChild(hopt);
+                    }
+
+                    //Cinema name
+                    var cnlabel = document.createElement("label");
+                    cnlabel.for = "cinemaname";
+                    cnlabel.innerHTML = "Cinema Name: "
+                    document.getElementById('fm'+ mcount).appendChild(cnlabel);
+                    cnlabel.style.display = "none";
+
+                    var cn = document.createElement("input");
+                    cn.readonly= "readonly";
+                    cn.name = "cinemaname"
+                    cn.value = cinemas[j].branchName;
+                    document.getElementById('fm'+ mcount).appendChild(cn);
+                    cn.style.display = "none";
+
+                    //Submit Button
+                    var btn = document.createElement("input");
+                    btn.type = "submit";
+                    btn.value = "Buy Ticket";
+                    document.getElementById('fm'+ mcount).appendChild(btn);
+
+                    mcount++;
+                }
+            }
+        }
+    }
+
+    //Displaying only Selected Cinema
+    var selectedcn = document.querySelector("#selection");
+    selectedcn.addEventListener("change", function(){
+        for(m=0; m<cinemas.length; m++){
+            var s_cinema = cinemas[m].branchName;
+            if (s_cinema == selectedcn.options[selectedcn.selectedIndex].value){
+                var showing = document.getElementById('container'+ m);
+            }
+            else {
+                var notshowing = document.getElementById('container'+ m);
+                notshowing.style.display = "none";
+            }
+        }
+
+        showing.style.display = "block";
+        }
+        );
+</script>
+
+</html>

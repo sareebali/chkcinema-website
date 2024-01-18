@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    
+    <link rel="stylesheet" href="../CSS/Theme.css" type="text/css" media="all" /> 
+    <link rel="stylesheet" href="../CSS/Header.css" type="text/css" media="all" /> 
+    <link rel="stylesheet" href="../CSS/Menu.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../CSS/Footer.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../CSS/Heading.css" type="text/css" media="all" />
+    <script src="../JavaScript/movies.js"></script>
+    <style media="all">
+        a[href="Home.html"]{
+            pointer-events: none;
+        }
+        b + img{
+            float: left;
+            margin-right: 20pt;
+            margin-top: 18pt;
+            cursor: pointer;
+            
+        }
+        span{
+            font-weight: bold;
+        }
+        video{
+            border: 3pt white;
+            border-style: solid;
+            border-radius: 24px;
+            width: 40%;
+            
+        }
+        .heading{
+            color: rgb(52, 163, 207);
+            font-weight: bolder;
+            font-size: 20pt;
+            margin: 8pt 0pt;
+        }
+        div + div{
+            border: 1pt  rgb(52, 163, 207);
+            border-style: solid;
+            border-radius: 10px;
+            padding: 10pt;
+            height: 300pt;
+        }
+        p, b{
+            margin: 1pt;
+        }
+        b{
+            position: relative;
+            right: 87pt;
+            margin-top: 100pt;
+            font-weight:normal !important;
+        }
+        
+        section{
+            margin-bottom: 20pt;
+        }
+        section > p{
+            
+            padding-right: 500pt;
+        }
+        h6{
+            margin: 0pt;
+            color: rgb(52, 163, 207);
+        }
+    </style>
+
+    
+
+</head>
+<body>
+    
+    <header>
+        <div></div>
+        <img src="../Pictures/CHKLogo.png" title="Cinema HK Logo" alt="Cinema HK Logo">
+        <h1>Cinema HK</h1>    
+    </header>
+    
+    <nav>
+        <a class= "topmenu" href="Home.html">Home</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Now-Showing.html">Now Showing</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Ticket.html">Ticket</a>
+    </nav>
+    
+    <div>
+        <div id="v"></div>
+    </div>
+
+    <div>
+        
+        <h6 class="heading">Now Showing:</h6>
+        <div id="now"></div>
+
+    </div>
+
+    
+    
+    <div>
+        
+        <h6 class="heading">Up Coming:</h6>
+        <div id="upcoming"></div>
+        
+    </div>
+
+    <script>
+        var movies = getMovies();
+       for (i=0; i<movies.length; i++){
+           var mn = movies[i].name;
+           var thumbnail = movies[i].thumbnail;
+           var source = movies[i].src;
+           var cast = movies[i].cast;
+           var director = movies[i].director;
+           var duration = movies[i].duration;
+           var src = movies[i].src;
+           var id = movies[i].id;
+
+           var vid = document.createElement("video");
+           vid.controls="controls";
+           vid.autoplay="autoplay";
+           vid.muted="muted";
+           vid.innerHTML='<source src="'+ src +'" type="video/mp4">'
+               +'<source src="'+ src +'" type="video/ogg">'
+               +'<h2>Your Browser does not support this Video format</h2>'
+           document.getElementById("v").appendChild(vid)
+           var cont = document.createElement("dd");
+           cont.innerHTML = '<section>'
+           +'<h6>____</h6>'
+           +'<b><span>Movie Name:</span>' + mn +'</b>'
+           +'<img src="'+ thumbnail +'" title="' + mn + '" alt="' + mn +'" onclick="imgclick('+ id +')">'
+           +'<p><span>Director:</span>'+ director +'</p>'
+           +'<p><span>Cast:</span>'+ cast +'</p>'
+           +'<p><span>Duration:</span>'+ duration +'</p>'
+           +'</section>' ;
+           if (movies[i].type == "now"){
+           document.getElementById("now").appendChild(cont);
+           }
+           else{
+               document.getElementById("upcoming").appendChild(cont);
+           }
+           
+           
+       }
+   </script>
+   <script>
+       var iv=0;
+           function nextvid(){
+           var onevid=document.querySelectorAll("video");
+           for(i=0; i<onevid.length; i++){
+           onevid[i].style.display="none";
+
+           }
+           iv++;
+           if(iv>onevid.length)
+           iv=1;
+           onevid[iv-1].style.display="block";
+           onevid[iv-1].load();
+           onevid[iv-1].onended=function()
+           {setTimeout(nextvid,2000);}
+           }
+
+           nextvid();
+
+           function imgclick(id){
+           iv = 0+id-1;
+           return nextvid();
+           }
+   </script>
+
+    <footer>
+        
+        <p>@Copyright of resources belongs to corresponding copyright owners</p>
+        <p>-Fair use for Educational Purposes</p>
+        <nav>
+            <a href="Home.html">Home</a> <mark>|</mark> <a href="Design.html">Design</a>
+        </nav>
+    </footer>
+
+   
+    
+</body>
+</html>

@@ -1,0 +1,17 @@
+header > h1{  
+    font-family: Agency fb, bold;
+    font-weight: bolder;
+    position: absolute;
+    bottom: 75%;
+    left: 75pt;
+    font-size: 72pt;
+    width: 300pt;
+    height: 70pt;
+    z-index: 0;    
+}
+header > div{
+    width: 30pt;
+    height: 78pt;
+}
+  
+

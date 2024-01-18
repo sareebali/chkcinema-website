@@ -1,0 +1,15 @@
+footer, footer > p, footer a, footer mark, footer > nav{
+    background-color: #007cd3;
+}
+footer > nav, footer > p{
+    text-align: center;
+    margin: 4pt;
+}
+footer{
+    border: 5pt #3494d8;
+    border-style: solid;
+    border-radius: 15px;
+}
+footer a{
+    text-decoration: none;
+}

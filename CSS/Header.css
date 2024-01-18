@@ -1,0 +1,16 @@
+header > img{
+    animation-name: logo;
+    animation-duration: 3s;
+    z-index: 5;
+    position: absolute;
+    bottom: 84%;
+    margin-bottom: 2pt;
+    background-color: transparent;
+}
+
+
+@keyframes logo {
+    0% {right: 92%;}
+    100% {right: 0%;}
+}
+

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <link rel="stylesheet" href="../CSS/Theme.css" type="text/css" media="all" /> 
+    <link rel="stylesheet" href="../CSS/Header.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../CSS/Menu.css" type="text/css" media="all" /> 
+    <link rel="stylesheet" href="../CSS/Footer.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../CSS/Heading.css" type="text/css" media="all" />
+    <script src="../JavaScript/movies.js"></script>
+    <script src="http://courses.cs.cityu.edu.hk/cs2204/cw3/cinemas.js"></script>
+
+    <style media="all">
+        a[href="Ticket.html"]{
+            pointer-events: none;
+        }
+        td + td:hover{
+            background-color: #007cd3;
+            cursor: pointer;
+        }
+        td{
+            border: 2pt rgb(52, 163, 207);
+            border-style: solid;
+            margin: 0;
+            padding: 3pt;
+        }
+        table{
+            border-collapse: collapse;
+            border-spacing: 0px;
+            margin-left: 25pt;
+            margin-bottom: 10pt;
+        }
+        caption{
+            color: rgb(52, 163, 207);
+            font-weight: bold;
+        }
+        h2{
+            margin-left: 13pt;
+            margin-bottom: 3pt;
+        }
+        fieldset{
+            border: 1pt  rgb(52, 163, 207);
+            border-style: solid;
+            border-radius: 5px;
+        }
+        input{
+            margin-right: 10pt;
+        }
+        input[name="cinemaname"]{
+            width: 120pt;
+        }
+        input[name="selectedseats"]{
+            width: 260pt;
+        }
+    </style>
+
+<script type="text/javascript">
+    //Functions for filling Cinema Name, Movie Name, Date Time and House
+    function replacer(words) {
+        for (j=0; j<words.length; j++) {
+          if (words.charAt(j) == '+'){
+              words = words.replace(words.charAt(j), ' ');
+          };
+        };
+        words = words.replace("%2C",", ");
+        words = words.replace("%3A", ":");
+        return words;
+    }
+
+    function getVar(variable) {
+      var query = window.location.search.substring(1);
+      query = replacer(query);
+      var vars = query.split("&");
+      for (i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+          return pair[1];
+        }
+      }
+      return null;
+    }
+
+    function fillVar(){
+        document.querySelector('#cinema').value = getVar('cinemaname');
+        document.querySelector('#mn').value = getVar('moviename');
+        document.querySelector('#dt').value = getVar('datetime');
+        document.querySelector('#house').value = getVar('house');
+
+    }
+
+    //Function for filling Selected Seats
+    var selseat = [];
+    function fillSeats(seat){
+        if (seat.className == 'seat'){
+            seat.style.backgroundColor = '#08548a';
+            seat.style.textDecoration = 'none';
+            seat.style.pointerevents = 'none';
+            seat.style.cursor = 'not-allowed';
+            selseat.push(seat.id);
+            document.querySelector('#seats').value = selseat;
+            seat.className = 'selectedseat';
+        }
+    }
+    </script>
+
+</head>
+<body onload="fillVar()">
+    
+    <header>
+        <div></div>
+        <img src="../Pictures/CHKLogo.png" title="Cinema HK Logo" alt="Cinema HK Logo">
+        <h1>Cinema HK</h1>
+    </header>
+
+    <nav>
+        <a class= "topmenu" href="Home.html">Home</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Now-Showing.html">Now Showing</a> <mark class= "topmenu">|</mark> <a class= "topmenu" href="Ticket.html">Ticket</a>
+    </nav>
+
+    <form action="Print.html" method="GET">
+        <fieldset>
+        <label for="cinema">Cinema:</label>
+        <input type="text" id="cinema" name="cinemaname" readonly>
+        <label for="mn">Movie Name:</label>
+        <input type="text" id="mn" name="moviename" readonly>
+        <label for="dt">Date & Time:</label>
+        <input type="text" id="dt" name="datetime" readonly>
+        <label for="house">House:</label>
+        <input type="text" id="house" name="house" readonly>
+        </fieldset>
+    
+        <h2>Seating Arrangement</h2>
+        <table>
+            <caption>Screen</caption>
+            <tr>
+                <td><b>Row A</b></td>
+                <td id="A1" class="seat" onclick="fillSeats(this)">A1</td>
+                <td id="A2" class="seat" onclick="fillSeats(this)">A2</td>
+                <td id="A3" class="seat" onclick="fillSeats(this)">A3</td>
+                <td id="A4" class="seat" onclick="fillSeats(this)">A4</td>
+            </tr>
+            <tr>
+                <td><b>Row B</b></td>
+                <td id="B1" class="seat" onclick="fillSeats(this)">B1</td>
+                <td id="B2" class="seat" onclick="fillSeats(this)">B2</td>
+                <td id="B3" class="seat" onclick="fillSeats(this)">B3</td>
+                <td id="B4" class="seat" onclick="fillSeats(this)">B4</td>
+            </tr>
+            <tr>
+                <td><b>Row C</b></td>
+                <td id="C1" class="seat" onclick="fillSeats(this)">C1</td>
+                <td id="C2" class="seat" onclick="fillSeats(this)">C2</td>
+                <td id="C3" class="seat" onclick="fillSeats(this)">C3</td>
+                <td id="C4" class="seat" onclick="fillSeats(this)">C4</td>
+            </tr>
+            <tr>
+                <td><b>Row D</b></td>
+                <td id="D1" class="seat" onclick="fillSeats(this)">D1</td>
+                <td id="D2" class="seat" onclick="fillSeats(this)">D2</td>
+                <td id="D3" class="seat" onclick="fillSeats(this)">D3</td>
+                <td id="D4" class="seat" onclick="fillSeats(this)">D4</td>
+            </tr>
+            <tr>
+                <td><b>Row E</b></td>
+                <td id="E1" class="seat" onclick="fillSeats(this)">E1</td>
+                <td id="E2" class="seat" onclick="fillSeats(this)">E2</td>
+                <td id="E3" class="seat" onclick="fillSeats(this)">E3</td>
+                <td id="E4" class="seat" onclick="fillSeats(this)">E4</td>
+            </tr>
+        </table>
+        <fieldset>
+        <label for="seats">Selected Seats: </label>
+        <input type="text" id="seats" name="selectedseats" readonly>
+        <input type="submit" value="Confirm">
+        </fieldset>
+    </form>
+
+    <footer>
+        
+        <p>@Copyright of resources belongs to corresponding copyright owners</p>
+        <p>-Fair use for Educational Purposes</p>
+        <nav>
+            <a href="Home.html">Home</a> <mark>|</mark> <a href="Design.html">Design</a>
+        </nav>
+        
+    </footer>
+
+   
+</body>
+</html>

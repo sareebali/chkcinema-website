@@ -1,0 +1,18 @@
+
+header, nav, footer{
+    visibility: hidden;
+    position: fixed;
+}
+#ticket > div{
+    border: 1pt  rgb(52, 163, 207);
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10pt;
+    height: 230pt;
+    width: 240pt;
+    font-size: 16pt;
+    page-break-after: always;
+}
+p, h2{
+    color: black;
+}
